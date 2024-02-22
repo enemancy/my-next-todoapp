@@ -1,10 +1,11 @@
 export type Todo = {
   id: string;
   name: string;
-  deadline: Date | null,
+  deadline: Date,
   isImportant: boolean,
-  assignedPerson: string | null,
+  assignedPerson: string,
   tag: string | null,
+  isDone: boolean,
 }
 
 export type User = {

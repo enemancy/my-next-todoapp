@@ -8,6 +8,7 @@ export const todos: Todo[] = [
     isImportant: false,
     assignedPerson: 'Taro',
     tag: null,
+    isDone: false,
   },
   {
     id: '2',
@@ -16,6 +17,7 @@ export const todos: Todo[] = [
     isImportant: false,
     assignedPerson: 'Jiro',
     tag: null,
+    isDone: false,
   },
   {
     id: '3',
@@ -24,6 +26,7 @@ export const todos: Todo[] = [
     isImportant: true,
     assignedPerson: 'Saburo',
     tag: null,
+    isDone: true,
   },
   {
     id: '4',
@@ -32,6 +35,7 @@ export const todos: Todo[] = [
     isImportant: false,
     assignedPerson: 'Shiro',
     tag: null,
+    isDone: false,
   },
 ];
 
