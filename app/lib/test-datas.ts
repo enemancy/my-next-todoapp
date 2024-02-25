@@ -1,6 +1,6 @@
 import type { Todo, User } from '@/app/lib/definitions';
 
-export const todos: Todo[] = [
+export const initialTodos: Todo[] = [
   {
     id: '1',
     name: 'aaa',

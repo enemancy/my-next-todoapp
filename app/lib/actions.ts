@@ -1,4 +1,4 @@
-import { todos } from '@/app/lib/test-datas';
+import { initialTodos } from '@/app/lib/test-datas';
 import type { Todo } from '@/app/lib/definitions';
 import { redirect } from 'next/navigation';
 
@@ -13,15 +13,15 @@ export function createTodo(formData: FormData){
     isDone: false,
   }
 
-  todos.push(fields);
+  initialTodos.push(fields);
   redirect('/tasks');
 }
 
 export function deleteTodo(formData: FormData){
   const deleteId = formData.get('id');
-  const index = todos.findIndex(todo => todo.id === deleteId);
+  const index = initialTodos.findIndex(todo => todo.id === deleteId);
   if (index !== -1) {
-    todos.splice(index, 1);
+    initialTodos.splice(index, 1);
   }
   redirect('/tasks');
 }

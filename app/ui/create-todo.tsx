@@ -44,7 +44,7 @@ export default function CreateTodo() {
           name="assignedPerson"
           className="border-0 bg-white px-4 py-2 rounded-full shadow-md focus:ring-2 focus:ring-gray-400 transition duration-300 ease-in-out"
         >
-          <option value="" selected>担当者を選択</option>
+          <option value="">担当者を選択</option>
           {users.map((user) => (
             <option key={user.name} value={user.name}>{user.name}</option>
           ))}

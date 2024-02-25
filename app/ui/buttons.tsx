@@ -1,7 +1,6 @@
 'use client';
 
-import { todos, users } from '@/app/lib/test-datas';
-import { createTodo, deleteTodo } from '@/app/lib/actions';
+import { deleteTodo } from '@/app/lib/actions';
 import { IconContext } from 'react-icons';
 import { FaTrashAlt } from "react-icons/fa";
 
@@ -17,7 +16,7 @@ export function DeleteButton({ id }: { id: string }) {
       <input
         name="id"
         type="text"
-        value={id}
+        defaultValue={id}
         className="hidden"
       />
     </form>
