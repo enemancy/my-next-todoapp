@@ -6,12 +6,43 @@ import { MdAddTask } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { useState } from 'react';
+import type { Todo } from '@/app/lib/definitions'
 
 export default function CreateTodo() {
-  const [isImportant, setIsImportant] = useState(false);
-  const handleStarClick = () => {
-    setIsImportant(!isImportant);
+  const [todo, setTodo] = useState<Todo>({
+    id: '',
+    name: '',
+    deadline: new Date(),
+    isImportant: false,
+    assignedPerson: '',
+    tag: null,
+    isDone: false,
+  });
+
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // 時間遅らせるみたいなのあったよね
+    const newTodo = { ...todo };
+    newTodo.name = e.target.value;
+    setTodo(newTodo);
   };
+  const handleChangeDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTodo = { ...todo };
+    newTodo.deadline = new Date(e.target.value);
+    setTodo(newTodo);
+  };
+  const handleClickStar = () => {
+    const newTodo = { ...todo };
+    newTodo.isImportant = !newTodo.isImportant;
+    setTodo(newTodo);
+  };
+  const handleChangeAssignedPerson = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newTodo = { ...todo };
+    newTodo.assignedPerson = e.target.value;
+    setTodo(newTodo);
+  };
+  
+  
+
 
   return (
     <>
@@ -22,17 +53,22 @@ export default function CreateTodo() {
         <input
           name="name"
           type="text"
+          onChange={handleChangeName}
           placeholder="タスクを追加"
           className="border-0 bg-white px-4 py-2 rounded-full shadow-md w-full focus:ring-2 focus:ring-gray-400 transition duration-300 ease-in-out"
         />
         <input
           name="deadline"
           type="date"
+          onChange={handleChangeDeadline}
           className="border-0 bg-white px-4 py-2 rounded-full shadow-md w-full focus:ring-2 focus:ring-gray-400 transition duration-300 ease-in-out"
         />
-        <div className="flex items-center justify-center bg-white px-2 py-2 rounded-full shadow-md">
-          <label onClick={handleStarClick} htmlFor="isImportant" className="w-5 h-5 text-gray-600 focus:ring-gray-500 rounded-full">
-            {isImportant ? <FaStar /> : <CiStar />}
+        <div 
+          className="flex items-center justify-center bg-white px-2 py-2 rounded-full shadow-md"
+          onClick={handleClickStar}
+        >
+          <label htmlFor="isImportant" className="w-5 h-5 text-gray-600 focus:ring-gray-500 rounded-full">
+            {todo.isImportant ? <FaStar /> : <CiStar />}
           </label>
           <input
             name="isImportant"
@@ -42,6 +78,7 @@ export default function CreateTodo() {
         </div>
         <select
           name="assignedPerson"
+          onChange={handleChangeAssignedPerson}
           className="border-0 bg-white px-4 py-2 rounded-full shadow-md focus:ring-2 focus:ring-gray-400 transition duration-300 ease-in-out"
         >
           <option value="">担当者を選択</option>
