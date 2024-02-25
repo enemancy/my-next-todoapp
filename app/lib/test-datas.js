@@ -1,8 +1,8 @@
-import type { Todo, User } from '@/app/lib/definitions';
+const { v4: uuidv4 } = require('uuid');
 
-export const initialTodos: Todo[] = [
+const initialTodos = [
   {
-    id: '1',
+    id: uuidv4(),
     name: 'aaa',
     deadline: new Date('2024-02-29'),
     isImportant: false,
@@ -11,7 +11,7 @@ export const initialTodos: Todo[] = [
     isDone: false,
   },
   {
-    id: '2',
+    id: uuidv4(),
     name: 'bbb',
     deadline: new Date('2024-02-27'),
     isImportant: false,
@@ -20,7 +20,7 @@ export const initialTodos: Todo[] = [
     isDone: false,
   },
   {
-    id: '3',
+    id: uuidv4(),
     name: 'ccc',
     deadline: new Date('2024-02-20'),
     isImportant: true,
@@ -29,7 +29,7 @@ export const initialTodos: Todo[] = [
     isDone: true,
   },
   {
-    id: '4',
+    id: uuidv4(),
     name: 'ddd',
     deadline: new Date('2024-02-21'),
     isImportant: false,
@@ -39,7 +39,7 @@ export const initialTodos: Todo[] = [
   },
 ];
 
-export const users: User[] = [
+const users = [
   {
     name: 'test',
     email: 'test@testmail.com',
@@ -61,3 +61,9 @@ export const users: User[] = [
     email: 'Shiro@testmail.com',
   },
 ];
+
+module.exports = {
+  initialTodos,
+  users,
+};
+
