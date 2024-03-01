@@ -12,11 +12,11 @@ export default function CreateTodo() {
   const [todo, setTodo] = useState<Todo>({
     id: '',
     name: '',
-    deadline: new Date(),
-    isImportant: false,
-    assignedPerson: '',
+    deadline: new Date().toISOString().split('T')[0],
+    is_important: false,
+    assigned_person: '',
     tag: null,
-    isDone: false,
+    is_done: false,
   });
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,17 +27,17 @@ export default function CreateTodo() {
   };
   const handleChangeDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTodo = { ...todo };
-    newTodo.deadline = new Date(e.target.value);
+    newTodo.deadline = new Date(e.target.value).toISOString().split('T')[0];
     setTodo(newTodo);
   };
   const handleClickStar = () => {
     const newTodo = { ...todo };
-    newTodo.isImportant = !newTodo.isImportant;
+    newTodo.is_important = !newTodo.is_important;
     setTodo(newTodo);
   };
-  const handleChangeAssignedPerson = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeAssigned_person = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newTodo = { ...todo };
-    newTodo.assignedPerson = e.target.value;
+    newTodo.assigned_person = e.target.value;
     setTodo(newTodo);
   };
   
@@ -67,18 +67,18 @@ export default function CreateTodo() {
           className="flex items-center justify-center bg-white px-2 py-2 rounded-full shadow-md"
           onClick={handleClickStar}
         >
-          <label htmlFor="isImportant" className="w-5 h-5 text-gray-600 focus:ring-gray-500 rounded-full">
-            {todo.isImportant ? <FaStar /> : <CiStar />}
+          <label htmlFor="is_important" className="w-5 h-5 text-gray-600 focus:ring-gray-500 rounded-full">
+            {todo.is_important ? <FaStar /> : <CiStar />}
           </label>
           <input
-            name="isImportant"
+            name="is_important"
             type="checkbox"
             className="hidden"
           />
         </div>
         <select
-          name="assignedPerson"
-          onChange={handleChangeAssignedPerson}
+          name="assigned_person"
+          onChange={handleChangeAssigned_person}
           className="border-0 bg-white px-4 py-2 rounded-full shadow-md focus:ring-2 focus:ring-gray-400 transition duration-300 ease-in-out"
         >
           <option value="">担当者を選択</option>

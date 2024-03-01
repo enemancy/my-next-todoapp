@@ -10,11 +10,11 @@ async function seedTodos(client) {
       create table if not exists todos (
         id uuid default uuid_generate_v4() primary key,
         name varchar(255) not null,
-        deadline DATE,
-        isImportant boolean not null,
-        assignedPerson varchar(255),
+        deadline varchar(10),
+        is_important boolean not null,
+        assigned_person varchar(255),
         tag varchar(100),
-        isDone boolean not null
+        is_done boolean not null
       );
     `;
     console.log(`Created "todos" table`);
@@ -26,18 +26,18 @@ async function seedTodos(client) {
             id,
             name,
             deadline,
-            isImportant,
-            assignedPerson,
+            is_important,
+            assigned_person,
             tag,
-            isDone
+            is_done
           ) values (
             ${todo.id},
             ${todo.name},
             ${todo.deadline},
-            ${todo.isImportant},
-            ${todo.assignedPerson},
+            ${todo.is_important},
+            ${todo.assigned_person},
             ${todo.tag},
-            ${todo.isDone}
+            ${todo.is_done}
           )
           on conflict (id) do nothing;
         `;
