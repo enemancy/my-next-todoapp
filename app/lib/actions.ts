@@ -3,6 +3,7 @@
 import { initialTodos } from '@/app/lib/test-datas';
 import type { Todo } from '@/app/lib/definitions';
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import { sql } from '@vercel/postgres';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,22 +24,28 @@ export async function createTodo(formData: FormData){
       VALUES (${fields.id}, ${fields.name}, ${fields.deadline}, ${fields.is_important}, ${fields.assigned_person}, ${fields.tag}, ${fields.is_done})
     `;
     console.log('Success to create todo');
-
-    redirect('/tasks');
   }
   catch(err){
+    console.log('Failed to create Todos');
     console.error(err);
   }
-
+  
+  revalidatePath('/tasks');
 
 
 }
 
 export async function deleteTodo(formData: FormData){
-  const deleteId = formData.get('id');
-  const index = initialTodos.findIndex(todo => todo.id === deleteId);
-  if (index !== -1) {
-    initialTodos.splice(index, 1);
+  const deleteId = formData.get('id')?.toString();
+
+  try{
+    await sql`
+      delete from todos where id = ${deleteId}
+    `;
+    console.log('Success to delete todo');
+  } catch(err){
+    console.error(err);
   }
-  redirect('/tasks');
+
+  revalidatePath('/tasks');
 }
