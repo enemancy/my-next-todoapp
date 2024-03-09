@@ -10,7 +10,7 @@ export default async function Table() {
     <table className="w-full bg-gradient-to-r from-gray-100 to-gray-300 shadow-lg rounded-xl overflow-hidden text-center">
       <tbody className="divide-y divide-gray-400">
         {fetchedTodos.map((todo) => (
-          <TableRow paramTodo={todo} key={todo.id} />
+          <TableRow todo={todo} key={todo.id} />
         ))}
       </tbody>
     </table>
